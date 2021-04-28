@@ -12,25 +12,28 @@
     </style>
 </head>
 <body>
-    <h2>Board List</h2>
+    <h2>Board Update</h2>
+    <form:form action="/board/update" method="post" modelAttribute="boardVO">
     <table border="1" align="center">
+        <input type="hidden" name="seq" value="${boardInfo.seq}">
         <tr>
-            <th>#</th>
             <th>ID</th>
-            <th>TITLE</th>
-            <th>DELETE</th>
+            <td><input type="text" name="id" value="${boardInfo.id}"></td>
         </tr>
-        <c:forEach var="list" items="${boardList}">
         <tr>
-            <td>${list.seq}</td>
-            <td>${list.id}</td>
-            <td><a href="/board/detail?seq=${list.seq}">${list.title}</a></td>
-            <td><button><a href="/board/delete/${list.seq}">DELETE</a></button></td>
+            <th>TITLE</th>
+            <td><input type="text" name="title" value="${boardInfo.title}"></td>
         </tr>
-        </c:forEach>
+        <tr>
+            <th>CONTENT</th>
+            <td>
+                <textarea name="content">${boardInfo.content}</textarea>
+            </td>
+        </tr>
     </table>
     <div>
-        <button><a href="/board/insert">insert</a></button>
+        <input type="submit" value="UPDATE">
     </div>
+    </form:form>
 </body>
 </html>

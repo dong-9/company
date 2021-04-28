@@ -2,31 +2,74 @@ package com.example.board.db;
 
 import com.example.board.mapper.BoardMapper;
 import com.example.board.service.BoardService;
+import com.example.board.vo.BoardReplyVO;
 import com.example.board.vo.BoardVO;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @SpringBootTest
 public class MybatisTest {
-
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	BoardMapper boardMapper;
+
+	BoardVO vo;
+	@BeforeEach
+	public void initBoard(){
+		vo = new BoardVO();
+		vo.setSeq(2);
+		vo.setTitle("change");
+		vo.setContent("change");
+	}
 
 	@Test
 	public void boardListTest(){
 		boardService.selectList().stream().forEach(System.out::println);
 	}
 
-
-	//seq=1, userId=test1, title=test1제목, content=test1내용, regDate=2021-04-27)
 	@Test
 	public void boardDetail(){
-		BoardVO vo = new BoardVO();
-		vo.setSeq(1);
-		Assertions.assertEquals("test1내용", boardService.selectOne(vo).getContent());
+		//seq=1, id=test1, title=test1제목, content=test1내용, regDate=2021-04-27)
+		System.out.println(boardMapper.selectOne(vo));
+	}
+
+	@Test
+	@Transactional
+	public void boardInsertTest(){
+		Assertions.assertEquals(1,boardMapper.insert(vo));
+	}
+
+	@Test
+	@Transactional
+	public void boardDeleteTest(){
+		Assertions.assertEquals(1, boardMapper.delete(13));
+	}
+
+	@Test
+	@Transactional
+	public void updateTest(){
+		Assertions.assertEquals(1, boardMapper.update(vo));
+		boardMapper.selectList().forEach(System.out::println);
+	}
+
+	@Test
+	public void joinTest(){
+		boardMapper.selectReplyList(vo).forEach(System.out::println);
+	}
+
+	@Test
+	@Transactional
+	public void replyInsert(){
+		BoardReplyVO vo = new BoardReplyVO();
+		vo.setSeq(2);
+		vo.setReply("test댓글");
+		boardMapper.insertReply(vo);
+		boardMapper.selectReplyList(vo).forEach(System.out::println);
 	}
 }

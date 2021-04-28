@@ -4,7 +4,7 @@
 
     <!-- board List   -->
     <select id="selectList" resultType="boardVO">
-        SELECT * FROM board
+        SELECT * FROM board ORDER BY seq DESC
     </select>
 
     <!-- board Detail   -->
@@ -12,5 +12,41 @@
         SELECT * FROM board WHERE seq = #{seq}
     </select>
 
+    <!-- board reply join -->
+    <select id="selectReplyList" resultType="boardReplyVO">
+        SELECT R.idx, R.reply
+            FROM board_reply R, board B
+            WHERE R.seq = B.seq
+            AND R.seq = #{seq}
+            ORDER BY R.idx DESC
+    </select>
+
     <!-- board Insert   -->
+    <insert id="insert">
+        INSERT INTO board (id, title, content, regdate) VALUES(
+        #{id},
+        #{title},
+        #{content},
+        NOW()
+        )
+    </insert>
+
+    <!-- board reply insert -->
+    <insert id="insertReply">
+        INSERT INTO board_reply (seq, reply) VALUES(#{seq}, #{reply})
+    </insert>
+
+    <!-- board Update   -->
+    <update id="update">
+        UPDATE board SET
+        title = #{title},
+        content = #{content},
+        regdate = NOW()
+        WHERE seq = #{seq}
+    </update>
+
+    <!-- board Delete  -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM board WHERE seq = #{seq}
+    </delete>
 </mapper>

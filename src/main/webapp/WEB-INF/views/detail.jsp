@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,8 +31,15 @@
             <td>${boardInfo.content}</td>
         </tr>
         <tr>
-            <th>regdate</th>
-            <td>${boardInfo.regDate}</td>
+            <th>DATE</th>
+            <td>
+                <c:if test="${boardInfo.updateTime == null}">
+                    ${boardInfo.insertTime}
+                </c:if>
+                <c:if test="${boardInfo.updateTime != null}">
+                    ${boardInfo.updateTime}
+                </c:if>
+            </td>
         </tr>
     </table>
     <div>
@@ -39,18 +47,23 @@
     </div>
     <div id="reply-box">
         <h3>REPLY</h3>
+        <c:if test="${!empty boardInfo.boardReplyVO}">
         <table border="1" align="center" width="200px">
-            <c:forEach var="list" items="${replyList}" varStatus="vs">
+            <c:forEach var="list" items="${boardInfo.boardReplyVO}" varStatus="vs">
             <tr>
                 <td><h5>${list.reply}</h5></td>
             </tr>
             </c:forEach>
         </table>
-        <form action="/board/insertReply" method="post">
+        </c:if>
+        <form:form action="/board/insertReply" method="post" modelAttribute="boardReplyVO">
             <input type="hidden" name="seq" value="${boardInfo.seq}">
             <textarea name="reply"></textarea>
+            <c:if test="${msg != null}">
+                <span>${msg}</span>
+            </c:if>
             <input type="submit" value="reply">
-        </form>
+        </form:form>
     </div>
 </body>
 </html>

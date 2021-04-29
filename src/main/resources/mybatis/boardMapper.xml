@@ -2,9 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.mapper.BoardMapper">
 
+    <resultMap id="boardAll" type="boardVO">
+        <id column="seq" property="seq"/>
+        <result column="seq" property="seq"/>
+        <result column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="insert_time" property="insertTime"/>
+        <result column="update_time" property="updateTime"/>
+        <collection property="boardReplyVO" javaType="java.util.ArrayList" resultMap="boardReply"/>
+    </resultMap>
+
+    <resultMap id="boardReply" type="boardReplyVO">
+        <result column="idx" property="idx" />
+        <result column="seq" property="seq"/>
+        <result column="reply" property="reply"/>
+    </resultMap>
+
     <!-- board List   -->
     <select id="selectList" resultType="boardVO">
-        SELECT * FROM board ORDER BY seq DESC
+        SELECT * FROM board ORDER BY seq DESC LIMIT #{startRowNo}, #{endRowNo}
+    </select>
+
+    <select id="selectTotalRowCount" resultType="int">
+        SELECT COUNT(*) FROM board;
     </select>
 
     <!-- board Detail   -->
@@ -12,18 +33,24 @@
         SELECT * FROM board WHERE seq = #{seq}
     </select>
 
-    <!-- board reply join -->
-    <select id="selectReplyList" resultType="boardReplyVO">
-        SELECT R.idx, R.reply
-            FROM board_reply R, board B
-            WHERE R.seq = B.seq
-            AND R.seq = #{seq}
-            ORDER BY R.idx DESC
+    <!--
+        board & reply
+        수정필요
+    -->
+    <select id="selectBoardAll" resultMap="boardAll">
+        SELECT
+            B.seq, B.id, B.title, B.content, B.insert_time, B.update_time,
+            R.idx, R.reply
+        FROM board B
+                 LEFT JOIN board_reply R
+                           ON B.seq = R.seq
+        WHERE B.seq = #{seq}
+        ORDER BY R.idx DESC
     </select>
 
     <!-- board Insert   -->
     <insert id="insert">
-        INSERT INTO board (id, title, content, regdate) VALUES(
+        INSERT INTO board (id, title, content, insert_time) VALUES(
         #{id},
         #{title},
         #{content},
@@ -31,7 +58,10 @@
         )
     </insert>
 
-    <!-- board reply insert -->
+    <!--
+        board reply insert
+        수정필요
+    -->
     <insert id="insertReply">
         INSERT INTO board_reply (seq, reply) VALUES(#{seq}, #{reply})
     </insert>
@@ -41,7 +71,7 @@
         UPDATE board SET
         title = #{title},
         content = #{content},
-        regdate = NOW()
+        update_time = NOW()
         WHERE seq = #{seq}
     </update>
 
@@ -49,4 +79,5 @@
     <delete id="delete" parameterType="int">
         DELETE FROM board WHERE seq = #{seq}
     </delete>
+
 </mapper>

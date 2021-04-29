@@ -1,8 +1,9 @@
 package com.example.board.service;
 
 import com.example.board.mapper.BoardMapper;
-import com.example.board.vo.BoardReplyVO;
-import com.example.board.vo.BoardVO;
+import com.example.board.model.BoardReplyVO;
+import com.example.board.model.BoardVO;
+import com.example.board.model.PageMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
 
 	@Override
-	public List<BoardVO> selectList() {
-		return boardMapper.selectList();
-	}
+	public List<BoardVO> selectList(PageMaker pageMaker) { return boardMapper.selectList(pageMaker); }
 
 	@Override
 	public BoardVO selectOne(BoardVO vo) { return boardMapper.selectOne(vo); }
@@ -34,12 +33,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardReplyVO> selectReplyList(BoardVO vo) {
-		return boardMapper.selectReplyList(vo);
+	public int insertReply(BoardReplyVO vo) {
+		return boardMapper.insertReply(vo);
 	}
 
 	@Override
-	public int insertReply(BoardReplyVO vo) {
-		return boardMapper.insertReply(vo);
+	public int selectTotalRowCount() {
+		return boardMapper.selectTotalRowCount();
+	}
+
+	@Override
+	public BoardVO selectBoardAll(BoardVO vo) {
+		return boardMapper.selectBoardAll(vo);
 	}
 }

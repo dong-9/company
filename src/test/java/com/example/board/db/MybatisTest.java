@@ -1,15 +1,18 @@
 package com.example.board.db;
 
 import com.example.board.mapper.BoardMapper;
+import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
-import com.example.board.vo.BoardReplyVO;
-import com.example.board.vo.BoardVO;
+import com.example.board.model.BoardReplyVO;
+import com.example.board.model.BoardVO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @SpringBootTest
@@ -23,14 +26,14 @@ public class MybatisTest {
 	@BeforeEach
 	public void initBoard(){
 		vo = new BoardVO();
-		vo.setSeq(2);
+		vo.setSeq(21);
 		vo.setTitle("change");
 		vo.setContent("change");
 	}
 
 	@Test
 	public void boardListTest(){
-		boardService.selectList().stream().forEach(System.out::println);
+		//boardService.selectList().stream().forEach(System.out::println);
 	}
 
 	@Test
@@ -55,13 +58,9 @@ public class MybatisTest {
 	@Transactional
 	public void updateTest(){
 		Assertions.assertEquals(1, boardMapper.update(vo));
-		boardMapper.selectList().forEach(System.out::println);
+		//boardMapper.selectList().forEach(System.out::println);
 	}
 
-	@Test
-	public void joinTest(){
-		boardMapper.selectReplyList(vo).forEach(System.out::println);
-	}
 
 	@Test
 	@Transactional
@@ -70,6 +69,24 @@ public class MybatisTest {
 		vo.setSeq(2);
 		vo.setReply("test댓글");
 		boardMapper.insertReply(vo);
-		boardMapper.selectReplyList(vo).forEach(System.out::println);
 	}
+
+	@Test
+	public void join(){
+		System.out.println(boardMapper.selectBoardAll(vo));
+	}
+
+	@Test
+	public void paging(){
+		PageMaker maker = new PageMaker();
+		maker.setStartEndRowNo();
+		List<BoardVO> list =  boardMapper.selectList(maker);
+		maker.setTotalRowCount(boardMapper.selectTotalRowCount());
+		list.forEach(System.out::println);
+		System.out.println(maker);
+
+		// 19,18,17,16,15
+
+	}
+
 }

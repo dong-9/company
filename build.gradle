@@ -29,6 +29,7 @@ dependencies {
     compile('javax.servlet:jstl:1.2') //jstl
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4' //mybatis
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0' //mariadb
+    implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP
 
 
 }

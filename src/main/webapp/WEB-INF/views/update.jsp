@@ -15,19 +15,23 @@
     <h2>Board Update</h2>
     <form:form action="/board/update" method="post" modelAttribute="boardVO">
     <table border="1" align="center">
-        <input type="hidden" name="seq" value="${boardInfo.seq}">
+        <form:hidden path="seq" />
         <tr>
             <th>ID</th>
-            <td><input type="text" name="id" value="${boardInfo.id}"></td>
+            <td><form:input path="id" readonly="true"/></td>
         </tr>
         <tr>
             <th>TITLE</th>
-            <td><input type="text" name="title" value="${boardInfo.title}"></td>
+            <td>
+                <form:input path="title" />
+                <form:errors path="title" />
+            </td>
         </tr>
         <tr>
             <th>CONTENT</th>
             <td>
-                <textarea name="content">${boardInfo.content}</textarea>
+                <form:textarea path="content"/>
+                <form:errors path="content" />
             </td>
         </tr>
     </table>

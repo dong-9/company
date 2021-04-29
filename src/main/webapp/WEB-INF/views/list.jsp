@@ -30,6 +30,18 @@
         </c:forEach>
     </table>
     <div>
+        <c:if test="${pageMaker.prev && pageMaker.page != 1}">
+            <a href="list?page=1">처음</a>
+            <a href="list?page=${pageMaker.startPageNo - 1}">이전</a>
+        </c:if>
+        <c:forEach var="page" begin="${pageMaker.startPageNo}" end="${pageMaker.endPageNo}">
+            <a href="list?page=${page}">${page}</a>
+        </c:forEach>
+        <c:if test="${pageMaker.next}">
+            <a href="list?page=${pageMaker.endPageNo + 1}">다음</a>
+            <a href="list?page=${pageMaker.lastPageNo}">끝</a>
+        </c:if>
+        <br>
         <button><a href="/board/insert">insert</a></button>
     </div>
 </body>

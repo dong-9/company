@@ -18,21 +18,21 @@
         <tr>
             <th>ID</th>
             <td>
-                <input type="text" name="id" placeholder="ID">
+                <form:input path="id" />
                 <form:errors path="id"/>
             </td>
         </tr>
         <tr>
             <th>TITLE</th>
             <td>
-                <input type="text" name="title" placeholder="TITLE">
+                <form:input path="title" />
                 <form:errors path="title"/>
             </td>
         </tr>
         <tr>
             <th>CONTENT</th>
             <td>
-                <textarea cols="10" name="content"></textarea>
+                <form:textarea path="content" />
                 <form:errors path="content"/>
             </td>
         </tr>

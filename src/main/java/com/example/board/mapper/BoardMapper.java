@@ -1,7 +1,8 @@
 package com.example.board.mapper;
 
-import com.example.board.vo.BoardReplyVO;
-import com.example.board.vo.BoardVO;
+import com.example.board.model.BoardReplyVO;
+import com.example.board.model.BoardVO;
+import com.example.board.model.PageMaker;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +11,13 @@ import java.util.List;
 @Mapper
 @Repository
 public interface BoardMapper {
-	List<BoardVO> selectList();
+	List<BoardVO> selectList(PageMaker pageMaker);
 	BoardVO selectOne(BoardVO vo);
+	BoardVO selectBoardAll(BoardVO vo);
 	int insert(BoardVO vo);
 	int delete(int seq);
 	int update(BoardVO vo);
-	List<BoardReplyVO> selectReplyList(BoardVO vo);
 	int insertReply(BoardReplyVO vo);
+	int selectTotalRowCount();
+
 }

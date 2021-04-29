@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 60초 주기마다 로그파일이 바뀌었는지 검사하고 바뀌었으면 갱신 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
+    <!-- DB -->
+    <springProperty name="driverClass" source="spring.datasource.driver-class-name"/>
+    <springProperty name="url" source="spring.datasource.url"/>
+    <springProperty name="user" source="spring.datasource.username"/>
+    <springProperty name="password" source="spring.datasource.password"/>
+
+    <appender name="DB" class="ch.qos.logback.core.db.DBAppenderBase">
+<!--        com.test.package.util.logback.LogDBAppender-->
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>${driverClass}</driverClass>
+            <url>${url}</url>
+            <user>${user}</user>
+            <password>${password}</password>
+        </connectionSource>
+    </appender>
+</configuration>

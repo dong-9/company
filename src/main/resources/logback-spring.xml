@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 60초 주기마다 로그파일이 바뀌었는지 검사하고 바뀌었으면 갱신 -->
-<configuration scan="true" scanPeriod="60 seconds" debug="true">
-    <!-- DB -->
-    <springProperty name="driverClass" source="spring.datasource.driver-class-name"/>
-    <springProperty name="url" source="spring.datasource.url"/>
-    <springProperty name="user" source="spring.datasource.username"/>
-    <springProperty name="password" source="spring.datasource.password"/>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+    <!-- 로그 파일 저장 위치 -->
+    <property name="LOGS_PATH" value="logs/local"/>
 
-    <appender name="DB" class="ch.qos.logback.core.db.DBAppenderBase">
-<!--        com.test.package.util.logback.LogDBAppender-->
-        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-            <driverClass>${driverClass}</driverClass>
-            <url>${url}</url>
-            <user>${user}</user>
-            <password>${password}</password>
-        </connectionSource>
+    <!-- 콘솔로 로그를 남김 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <!-- 로그 메시지 패턴 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
     </appender>
+
+    <!-- 파일로 로그를 남김 -->
+    <appender name="ROLLFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_PATH}/logback.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_PATH}/logback.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <!-- kb, mb, gb -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+            <!-- 30일 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Framework Section -->
+    <logger name="egovframework" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLFILE"/>
+    </logger>
+    <logger name="org.springframework" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLFILE"/>
+    </logger>
+    <logger name="org.springframework.scheduling" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLFILE"/>
+    </logger>
+    <logger name="org.springframework.web" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLFILE"/>
+    </logger>
+
+    <!-- root는 글로벌 로거를 의미 위의 logger에 해당하지 않으면 root 로거가 실행 -->
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLFILE"/>
+    </root>
+
 </configuration>

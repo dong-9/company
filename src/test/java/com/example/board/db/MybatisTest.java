@@ -1,6 +1,7 @@
 package com.example.board.db;
 
 import com.example.board.mapper.BoardMapper;
+import com.example.board.mapper.LogMapper;
 import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
 import com.example.board.model.BoardReplyVO;
@@ -19,10 +20,12 @@ import java.util.List;
 public class MybatisTest {
 	@Autowired
 	BoardService boardService;
+
 	@Autowired
 	BoardMapper boardMapper;
 
 	BoardVO vo;
+
 	@BeforeEach
 	public void initBoard(){
 		vo = new BoardVO();

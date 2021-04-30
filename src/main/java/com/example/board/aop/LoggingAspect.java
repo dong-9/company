@@ -1,31 +1,47 @@
 package com.example.board.aop;
 
+import com.example.board.model.Log;
+import com.example.board.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Aspect // Aspect 명시
 @Component // Bean 등록
 @Slf4j
 public class LoggingAspect {
 
+	@Autowired
+	private LogService logService;
 
-	@Around("execution(* com.example.board.service.*Impl.*(..))")
+	@Around("execution(* com.example.board.service.BoardServiceImpl.*(..))")
 	public Object logging(ProceedingJoinPoint pjp) throws Throwable {
-		long startAt = System.currentTimeMillis();
-		log.info("[REQUEST] --> {}	{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
-		// 요기 사이에 log msg 디비에 저장
+		// TODO RESPONSE 추가 & JSON 형태로 DB 저장
+		StopWatch stopWatch = new StopWatch();
+		Log systemLog = new Log();
+		String request = "[REQUEST] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+		request += " " + pjp.getSignature().getDeclaringTypeName();
+		request += " method: " + pjp.getSignature().getName();
+		systemLog.setLogMessage(request);
+		logService.insertLog(systemLog);
+		log.info("[REQUEST] {} {}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+		stopWatch.start();
 		Object result = pjp.proceed();
-		long endAt = System.currentTimeMillis();
-		log.info("[RESPONSE] --> {}	{}	result = {}  {}ms",
-																pjp.getSignature().getDeclaringTypeName(),
-																pjp.getSignature().getName(),
-																result,
-																endAt-startAt);
+		stopWatch.stop();
+		String response = "[RESPONSE] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+		response += " " + pjp.getSignature().getName();
+		//response += " result : " + result;
+		response += " time : " + stopWatch.getTotalTimeMillis();
+		systemLog.setLogMessage(response);
+		logService.insertLog(systemLog);
+		log.info("[RESPONSE] {}	{} result : {}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName(), result);
 		return result;
 	}
 }

@@ -2,10 +2,12 @@ package com.example.board.aop;
 
 import com.example.board.model.Log;
 import com.example.board.service.LogService;
+import com.fasterxml.jackson.core.JsonParser;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
@@ -37,7 +39,6 @@ public class LoggingAspect {
 		stopWatch.stop();
 		String response = "[RESPONSE] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
 		response += " " + pjp.getSignature().getName();
-		//response += " result : " + result;
 		response += " time : " + stopWatch.getTotalTimeMillis();
 		systemLog.setLogMessage(response);
 		logService.insertLog(systemLog);

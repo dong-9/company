@@ -724,3 +724,115 @@ Field error in object 'boardVO' on field 'id': rejected value []; codes [NotBlan
 2021-04-30 17:01:29.432 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2021-04-30 17:01:29.432 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2021-04-30 17:01:29.437 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2021-04-30 18:46:02.110 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49576 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:46:02.112 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:46:02.122 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:46:02.143 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@36ae6145
+2021-04-30 18:46:03.465 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:46:03.477 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:46:03.550 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:46:03.603 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:46:03.615 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:46:03.713 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:46:03.763 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.931 seconds (JVM running for 7.751)
+2021-04-30 18:46:04.152 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@36ae6145, started on Fri Apr 30 18:46:02 KST 2021
+2021-04-30 18:46:04.154 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:46:04.155 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:46:33.128 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49585 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:46:33.130 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:46:33.138 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:46:33.163 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@43f347ab
+2021-04-30 18:46:34.429 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:46:34.442 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:46:34.509 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:46:34.561 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:46:34.573 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:46:34.677 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:46:34.724 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.878 seconds (JVM running for 7.68)
+2021-04-30 18:46:35.040 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@43f347ab, started on Fri Apr 30 18:46:33 KST 2021
+2021-04-30 18:46:35.042 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:46:35.043 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:48:17.879 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49601 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:48:17.881 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:48:17.890 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:48:17.911 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@3a6c3539
+2021-04-30 18:48:19.255 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:48:19.269 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:48:19.336 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:48:19.387 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:48:19.399 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:48:19.496 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:48:19.546 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.963 seconds (JVM running for 7.83)
+2021-04-30 18:48:19.846 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@3a6c3539, started on Fri Apr 30 18:48:17 KST 2021
+2021-04-30 18:48:19.847 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:48:19.848 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:48:45.460 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49607 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:48:45.462 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:48:45.469 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:48:45.492 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@70dea61b
+2021-04-30 18:48:46.824 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:48:46.838 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:48:46.906 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:48:46.955 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:48:46.967 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:48:47.068 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:48:47.118 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.937 seconds (JVM running for 7.765)
+2021-04-30 18:48:47.417 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@70dea61b, started on Fri Apr 30 18:48:45 KST 2021
+2021-04-30 18:48:47.420 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:48:47.420 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:49:10.152 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49610 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:49:10.155 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:49:10.165 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:49:10.186 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4825da6f
+2021-04-30 18:49:11.570 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:49:11.592 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:49:11.661 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:49:11.712 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:49:11.724 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:49:11.821 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:49:11.868 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 7.004 seconds (JVM running for 7.844)
+2021-04-30 18:49:12.142 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@4825da6f, started on Fri Apr 30 18:49:10 KST 2021
+2021-04-30 18:49:12.144 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:49:12.144 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:53:22.433 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49635 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:53:22.435 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:53:22.444 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:53:22.464 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4825da6f
+2021-04-30 18:53:23.580 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:53:23.590 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:53:23.643 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:53:23.685 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:53:23.694 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:53:23.771 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:53:23.810 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.642 seconds (JVM running for 7.477)
+2021-04-30 18:53:24.076 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@4825da6f, started on Fri Apr 30 18:53:22 KST 2021
+2021-04-30 18:53:24.077 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:53:24.078 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:54:03.063 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49641 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:54:03.064 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:54:03.073 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:54:03.094 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@3a6c3539
+2021-04-30 18:54:04.414 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:54:04.427 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:54:04.496 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:54:04.546 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:54:04.558 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:54:04.658 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:54:04.707 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 6.919 seconds (JVM running for 7.695)
+2021-04-30 18:54:04.991 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@3a6c3539, started on Fri Apr 30 18:54:03 KST 2021
+2021-04-30 18:54:04.993 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:54:04.994 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:54:47.699 [Test worker] INFO  c.e.b.j.JsonTest - Starting JsonTest using Java 11.0.2 on jangdonghyeon-ui-MacBookPro.local with PID 49646 (started by jdh in /Users/jdh/Desktop/board)
+2021-04-30 18:54:47.702 [Test worker] INFO  c.e.b.j.JsonTest - No active profile set, falling back to default profiles: default
+2021-04-30 18:54:47.713 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 6.1.7.Final
+2021-04-30 18:54:47.737 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@36ae6145
+2021-04-30 18:54:49.157 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-30 18:54:49.169 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-30 18:54:49.237 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+2021-04-30 18:54:49.292 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-30 18:54:49.304 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-30 18:54:49.432 [Test worker] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-04-30 18:54:49.493 [Test worker] INFO  c.e.b.j.JsonTest - Started JsonTest in 7.121 seconds (JVM running for 7.962)
+2021-04-30 18:54:49.826 [SpringContextShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@36ae6145, started on Fri Apr 30 18:54:47 KST 2021
+2021-04-30 18:54:49.828 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-04-30 18:54:49.828 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

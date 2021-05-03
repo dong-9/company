@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,6 @@ public class LoggingAspect {
 
 	@Around("execution(* com.example.board.service.BoardServiceImpl.*(..))")
 	public Object logging(ProceedingJoinPoint pjp) throws Throwable {
-		// TODO RESPONSE 추가 & JSON 형태로 DB 저장
 		StopWatch stopWatch = new StopWatch();
 		Log systemLog = new Log();
 		String request = "[REQUEST] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));

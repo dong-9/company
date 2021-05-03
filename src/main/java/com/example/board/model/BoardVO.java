@@ -18,8 +18,8 @@ public class BoardVO {
 	@NotBlank(message = "내용을 입력해주세요")
 	@Length(max = 100, message = "100자리 밑으로 입력해주세요")
 	private String content;
-	private String insertTime;
-	private String updateTime;
+	private String boardInsertTime;
+	private String boardUpdateTime;
 	private List<BoardReplyVO> boardReplyVO;
 }
 

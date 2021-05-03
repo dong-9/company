@@ -33,11 +33,11 @@
         <tr>
             <th>DATE</th>
             <td>
-                <c:if test="${boardInfo.updateTime == null}">
-                    ${boardInfo.insertTime}
+                <c:if test="${boardInfo.boardUpdateTime == null}">
+                    ${boardInfo.boardInsertTime}
                 </c:if>
-                <c:if test="${boardInfo.updateTime != null}">
-                    ${boardInfo.updateTime}
+                <c:if test="${boardInfo.boardUpdateTime != null}">
+                    ${boardInfo.boardUpdateTime}
                 </c:if>
             </td>
         </tr>
@@ -47,11 +47,19 @@
     </div>
     <div id="reply-box">
         <h3>REPLY</h3>
-        <c:if test="${!empty boardInfo.boardReplyVO}">
+        <c:if test="${boardInfo.boardReplyVO.get(0).idx != 0}">
         <table border="1" align="center" width="200px">
             <c:forEach var="list" items="${boardInfo.boardReplyVO}" varStatus="vs">
             <tr>
-                <td><h5>${list.reply}</h5></td>
+                <td>
+                    <h5>${list.reply}</h5>
+                    <button><a href="updateReply?idx=${list.idx}&seq=${list.seq}">수정</a></button>
+                    <button><a href="deleteReply?idx=${list.idx}&seq=${list.seq}">삭제</a></button>
+                    <button><a href="#">댓글</a></button><br>
+                    <c:forEach var="i" begin="1" end="5">
+                        &nbsp;&nbsp;<span>댓${i}</span><br>
+                    </c:forEach>
+                </td>
             </tr>
             </c:forEach>
         </table>

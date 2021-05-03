@@ -12,6 +12,8 @@ public class BoardReplyVO {
 	@NotBlank(message = "댓글을 입력해주세요")
 	@Length(max = 50, message = "50글자 밑으로 입력해주세요")
 	private String reply;
-	private String insertTime;
-	private String updateTime;
+	private String replyInsertTime;
+	private String replyUpdateTime;
+	private int root;
+	private int indent;
 }

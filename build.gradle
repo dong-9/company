@@ -30,7 +30,7 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4' //mybatis
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0' //mariadb
     implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP
-    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1' //jsonparser
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1' //JSONParser
 
 
 

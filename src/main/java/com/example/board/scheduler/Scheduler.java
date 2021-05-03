@@ -10,8 +10,8 @@ public class Scheduler {
 
 	// TODO Quartz Test
 
-	@Scheduled(cron = "0/30 * * * * *")
-	public void scheduleTest(){
-		log.info("스케줄 테스트");
-	}
+//	@Scheduled(cron = "0/30 * * * * *")
+//	public void scheduleTest(){
+//		log.info("스케줄 테스트");
+//	}
 }

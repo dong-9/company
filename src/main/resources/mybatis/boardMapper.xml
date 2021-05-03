@@ -8,8 +8,8 @@
         <result column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
-        <result column="insert_time" property="insertTime"/>
-        <result column="update_time" property="updateTime"/>
+        <result column="board_insert_time" property="boardInsertTime"/>
+        <result column="board_update_time" property="boardUpdateTime"/>
         <collection property="boardReplyVO" javaType="java.util.ArrayList" resultMap="boardReply"/>
     </resultMap>
 
@@ -17,6 +17,17 @@
         <result column="idx" property="idx" />
         <result column="seq" property="seq"/>
         <result column="reply" property="reply"/>
+        <result column="reply_insert_time" property="replyInsertTime"/>
+        <result column="reply_update_time" property="replyUpdateTime"/>
+        <result column="root" property="root"/>
+        <result column="indent" property="indent"/>
+    </resultMap>
+
+    <resultMap id="boardReplyAnswer" type="boardReplyAnswerVO" >
+        <result column="idx" property="idx" />
+        <result column="root" property="root" />
+        <result column="indent" property="indent" />
+        <result column="reply_answer" property="replyAnswer" />
     </resultMap>
 
     <!-- board List   -->
@@ -39,8 +50,8 @@
     -->
     <select id="selectBoardAll" resultMap="boardAll">
         SELECT
-            B.seq, B.id, B.title, B.content, B.insert_time, B.update_time,
-            R.idx, R.reply
+            B.seq, B.id, B.title, B.content, B.board_insert_time, B.board_update_time,
+            R.idx, R.seq, R.reply
         FROM board B
                  LEFT JOIN board_reply R
                            ON B.seq = R.seq
@@ -58,14 +69,6 @@
         )
     </insert>
 
-    <!--
-        board reply insert
-        수정필요
-    -->
-    <insert id="insertReply">
-        INSERT INTO board_reply (seq, reply) VALUES(#{seq}, #{reply})
-    </insert>
-
     <!-- board Update   -->
     <update id="update">
         UPDATE board SET
@@ -80,4 +83,40 @@
         DELETE FROM board WHERE seq = #{seq}
     </delete>
 
+    <!-- reply insert -->
+    <insert id="insertReply">
+        INSERT INTO board_reply (seq, reply, reply_insert_time) VALUES(#{seq}, #{reply}, NOW())
+    </insert>
+
+    <!-- reply delete -->
+    <delete id="deleteReply">
+        DELETE FROM board_reply WHERE idx = #{idx}
+    </delete>
+
+    <select id="selectReplyOne" resultType="boardReplyVO">
+        SELECT * FROM board_reply WHERE idx = #{idx}
+    </select>
+
+    <!-- reply update -->
+    <update id="updateReply">
+        UPDATE board_reply
+        SET reply = #{reply}, reply_update_time = NOW()
+        WHERE idx = #{idx}
+    </update>
+
+    <insert id="insertReplyAnswer">
+        <selectKey order="BEFORE" resultType="int" keyProperty="indent">
+            SELECT
+                   NVL(MAX(indent), 0)+1
+            FROM board_reply_answer
+            WHERE root = #{idx}
+        </selectKey>
+        INSERT
+            INTO board_reply_answer (root, indent, reply_answer)
+                VALUES (#{idx}, #{indent}, #{replyAnswer})
+    </insert>
+
+    <select id="selectReplyAnswerList">
+        SELECT * FROM board_reply_answer where root = #{idx}
+    </select>
 </mapper>

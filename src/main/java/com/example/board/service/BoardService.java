@@ -13,6 +13,10 @@ public interface BoardService {
 	int insert(BoardVO vo);
 	int delete(int seq);
 	int update(BoardVO vo);
-	int insertReply(BoardReplyVO vo);
 	int selectTotalRowCount();
+
+	int insertReply(BoardReplyVO vo);
+	int deleteReply(BoardReplyVO vo);
+	BoardReplyVO selectReplyOne(BoardReplyVO vo);
+	int updateReply(BoardReplyVO vo);
 }

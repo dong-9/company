@@ -1,5 +1,6 @@
 package com.example.board.mapper;
 
+import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.BoardReplyVO;
 import com.example.board.model.BoardVO;
 import com.example.board.model.PageMaker;
@@ -17,7 +18,12 @@ public interface BoardMapper {
 	int insert(BoardVO vo);
 	int delete(int seq);
 	int update(BoardVO vo);
-	int insertReply(BoardReplyVO vo);
 	int selectTotalRowCount();
 
+	int insertReply(BoardReplyVO vo);
+	int deleteReply(BoardReplyVO vo);
+	BoardReplyVO selectReplyOne(BoardReplyVO vo);
+	int updateReply(BoardReplyVO vo);
+
+	int insertReplyAnswer(BoardReplyAnswerVO boardReplyAnswerVO);
 }

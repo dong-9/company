@@ -43,6 +43,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public int deleteReply(BoardReplyVO vo) {
+		return boardMapper.deleteReply(vo);
+	}
+
+	@Override
+	public BoardReplyVO selectReplyOne(BoardReplyVO vo) {
+		return boardMapper.selectReplyOne(vo);
+	}
+
+	@Override
+	public int updateReply(BoardReplyVO vo) {
+		return boardMapper.updateReply(vo);
+	}
+
+	@Override
 	public BoardVO selectBoardAll(BoardVO vo) {
 		return boardMapper.selectBoardAll(vo);
 	}

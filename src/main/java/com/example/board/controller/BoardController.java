@@ -29,7 +29,7 @@ public class BoardController {
 	// TODO AOP 기능 이용해서 로깅 처리(DB 처리, 로그 파일 관리)
 	// TODO log 처리
 
-	// TODO 페이징 처리
+	// TODO 페이징 처리(완료)
 	@GetMapping(value = "/list")
 	public String boardList(Model model, PageMaker pageMaker){
 		log.info("pageMaker INFO {}", pageMaker);
@@ -54,7 +54,7 @@ public class BoardController {
 		return "insert";
 	}
 
-	// TODO 벨리데이션 추가
+	// TODO 벨리데이션 추가(완료)
 	@PostMapping(value = "/insert")
 	public String boardInsert(@Valid BoardVO vo, BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
@@ -75,6 +75,28 @@ public class BoardController {
 		}
 		boardService.insertReply(vo);
 		return "redirect:detail?seq="+vo.getSeq();
+	}
+
+	@GetMapping(value = "/updateReply")
+	public String boardReplyUpdateForm(BoardReplyVO vo, Model model){
+		vo = boardService.selectReplyOne(vo);
+		if(vo == null) return "redirect:list";
+		model.addAttribute("boardReplyVO", vo);
+		return "replyUpdate";
+	}
+	@PostMapping(value = "/updateReply")
+	public String boardReplyUpdate(@Valid BoardReplyVO vo, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return "replyUpdate";
+		}
+		boardService.updateReply(vo);
+		return "redirect:detail?seq="+vo.getSeq();
+	}
+
+	@GetMapping(value = "/deleteReply")
+	public String boardDeleteReply(BoardReplyVO vo){
+		boardService.deleteReply(vo);
+		return "redirect:/board/detail?seq="+vo.getSeq();
 	}
 
 

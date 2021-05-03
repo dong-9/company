@@ -1,7 +1,7 @@
 package com.example.board.db;
 
 import com.example.board.mapper.BoardMapper;
-import com.example.board.mapper.LogMapper;
+import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
 import com.example.board.model.BoardReplyVO;
@@ -9,6 +9,8 @@ import com.example.board.model.BoardVO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,8 @@ import java.util.List;
 
 @SpringBootTest
 public class MybatisTest {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MybatisTest.class);
+
 	@Autowired
 	BoardService boardService;
 
@@ -29,7 +33,7 @@ public class MybatisTest {
 	@BeforeEach
 	public void initBoard(){
 		vo = new BoardVO();
-		vo.setSeq(21);
+		vo.setSeq(19);
 		vo.setTitle("change");
 		vo.setContent("change");
 	}
@@ -89,7 +93,20 @@ public class MybatisTest {
 		System.out.println(maker);
 
 		// 19,18,17,16,15
-
 	}
 
+	@Test
+	public void replyTest(){
+		BoardReplyVO replyVO = new BoardReplyVO();
+		replyVO.setIdx(24);
+		LOGGER.info("reply One {} ", boardMapper.selectReplyOne(replyVO));
+	}
+
+	@Test
+	public void t(){
+		BoardReplyAnswerVO v = new BoardReplyAnswerVO();
+		v.setIdx(31);
+		v.setReplyAnswer("test12");
+		boardMapper.insertReplyAnswer(v);
+	}
 }

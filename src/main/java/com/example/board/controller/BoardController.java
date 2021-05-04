@@ -1,5 +1,6 @@
 package com.example.board.controller;
 
+import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
 import com.example.board.model.BoardReplyVO;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.Bidi;
 
 
 @Controller
@@ -99,6 +101,16 @@ public class BoardController {
 		return "redirect:/board/detail?seq="+vo.getSeq();
 	}
 
+	@PostMapping(value = "/insertReplyAnswer")
+	public String boardInsertReplyAnswer(BoardVO boardVO,
+										 @Valid BoardReplyAnswerVO boardReplyAnswerVO,
+										 BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return "redirect:/board/detail?seq="+boardVO.getSeq();
+		}
+		boardService.insertReplyAnswer(boardReplyAnswerVO);
+		return "redirect:/board/detail?seq="+boardVO.getSeq();
+	}
 
 	@GetMapping(value = "/update")
 	public String boardUpdateForm(Model model, BoardVO vo){

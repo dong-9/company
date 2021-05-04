@@ -28,21 +28,22 @@ public class LoggingAspect {
 	public Object logging(ProceedingJoinPoint pjp) throws Throwable {
 		StopWatch stopWatch = new StopWatch();
 		Log systemLog = new Log();
-		String request = "[REQUEST] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-		request += " " + pjp.getSignature().getDeclaringTypeName();
-		request += " method: " + pjp.getSignature().getName();
-		systemLog.setLogMessage(request);
+		systemLog.setHttp("REQUEST");
+		systemLog.setHttpTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+		systemLog.setPackageName(pjp.getSignature().getDeclaringTypeName());
+		systemLog.setMethodName(pjp.getSignature().getName());
 		logService.insertLog(systemLog);
+
 		log.info("[REQUEST] {} {}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
 		stopWatch.start();
 		Object result = pjp.proceed();
 		stopWatch.stop();
-		String response = "[RESPONSE] " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-		response += " " + pjp.getSignature().getName();
-		response += " time : " + stopWatch.getTotalTimeMillis();
-		systemLog.setLogMessage(response);
-		logService.insertLog(systemLog);
 		log.info("[RESPONSE] {}	{} result : {}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName(), result);
+
+		systemLog.setHttp("RESPONSE");
+		systemLog.setHttpTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+		systemLog.setResultTime((int)stopWatch.getTotalTimeMillis());
+		logService.insertLog(systemLog);
 		return result;
 	}
 }

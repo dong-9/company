@@ -104,9 +104,11 @@ public class MybatisTest {
 
 	@Test
 	public void t(){
-		BoardReplyAnswerVO v = new BoardReplyAnswerVO();
-		v.setIdx(31);
-		v.setReplyAnswer("test12");
-		boardMapper.insertReplyAnswer(v);
+		BoardVO a = new BoardVO();
+		vo.setSeq(19);
+		a = boardMapper.selectBoardAll(vo);
+		List<BoardReplyVO> boardReplyVOList = a.getBoardReplyVO();
+		boardReplyVOList.forEach(System.out::println);
+		boardReplyVOList.get(0).getBoardReplyAnswerVOList().forEach(System.out::println);
 	}
 }

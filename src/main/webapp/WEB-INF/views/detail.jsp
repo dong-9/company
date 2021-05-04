@@ -54,11 +54,16 @@
                 <td>
                     <h5>${list.reply}</h5>
                     <button><a href="updateReply?idx=${list.idx}&seq=${list.seq}">수정</a></button>
-                    <button><a href="deleteReply?idx=${list.idx}&seq=${list.seq}">삭제</a></button>
-                    <button><a href="#">댓글</a></button><br>
-                    <c:forEach var="i" begin="1" end="5">
-                        &nbsp;&nbsp;<span>댓${i}</span><br>
+                    <button><a href="deleteReply?idx=${list.idx}&seq=${list.seq}">삭제</a></button><br>
+                    <c:forEach var="answerList" items="${list.boardReplyAnswerVOList}">
+                        <span>${answerList.replyAnswer}</span><br>
                     </c:forEach>
+                    <form action="insertReplyAnswer" method="post">
+                        <input type="hidden" name="idx" value="${list.idx}">
+                        <input type="hidden" name="seq" value="${list.seq}">
+                        <textarea name="replyAnswer"></textarea>
+                        <input type="submit" value="댓글 등록">
+                    </form>
                 </td>
             </tr>
             </c:forEach>

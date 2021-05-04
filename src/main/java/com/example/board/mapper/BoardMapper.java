@@ -25,5 +25,6 @@ public interface BoardMapper {
 	BoardReplyVO selectReplyOne(BoardReplyVO vo);
 	int updateReply(BoardReplyVO vo);
 
-	int insertReplyAnswer(BoardReplyAnswerVO boardReplyAnswerVO);
+	int insertReplyAnswer(BoardReplyAnswerVO vo);
+
 }

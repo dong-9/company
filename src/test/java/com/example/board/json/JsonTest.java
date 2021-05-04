@@ -1,25 +1,44 @@
 package com.example.board.json;
 
-import com.example.board.model.Log;
+import com.example.board.mapper.LogMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @SpringBootTest
 public class JsonTest {
 
+	@Autowired
+	LogMapper logMapper;
+
 	@Test
-	public void json() throws JsonProcessingException, ParseException {
-		// TODO JSONParser, JSONObject, JSONMapper 알아보기
-		Log log = new Log();
-		JSONParser jsonParser = new JSONParser();
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("test1", 1);
-		jsonObject.put("test2", 2);
-		jsonObject.put("test3", 3);
-		System.out.println(jsonObject.toJSONString());
+	public void json() throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		for(String li : logMapper.t1()){
+		}
+
+	}
+
+	@Test
+	public void deleteTest(){
+		//"2021-05-04 15:09:47.920"
+//		Assertions.assertEquals(1,logMapper.deleteLog("2021-05-04 15:09:47.920"));
+	}
+
+	@Test
+	@Transactional
+	public void e(){
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime ago = now.minusDays(7);
+		logMapper.deleteLog(
+				now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				ago.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+		);
 	}
 }

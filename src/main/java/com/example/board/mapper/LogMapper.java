@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 @Mapper
 public interface LogMapper {
-	List<Log> selectList();
 	int insertLog(Log log);
+	int deleteLog(String startDate, String endDate);
+
+	List<String> logTest();
+	int test(String data);
+	List<String> t1();
 }

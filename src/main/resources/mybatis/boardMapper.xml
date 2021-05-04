@@ -19,8 +19,7 @@
         <result column="reply" property="reply"/>
         <result column="reply_insert_time" property="replyInsertTime"/>
         <result column="reply_update_time" property="replyUpdateTime"/>
-        <result column="root" property="root"/>
-        <result column="indent" property="indent"/>
+        <collection property="boardReplyAnswerVOList" javaType="java.util.ArrayList" resultMap="boardReplyAnswer"/>
     </resultMap>
 
     <resultMap id="boardReplyAnswer" type="boardReplyAnswerVO" >
@@ -29,6 +28,20 @@
         <result column="indent" property="indent" />
         <result column="reply_answer" property="replyAnswer" />
     </resultMap>
+
+    <select id="selectBoardAll" resultMap="boardAll">
+        SELECT
+            B.seq, B.id, B.title, B.content, B.board_insert_time, B.board_update_time,
+            R.idx, R.seq, R.reply,
+            A.root, A.indent, A.reply_answer
+        FROM board B
+                 LEFT JOIN board_reply R
+                           ON B.seq = R.seq
+                 LEFT JOIN board_reply_answer A
+                           ON R.idx = A.root
+        WHERE b.seq = #{seq}
+        ORDER BY R.idx DESC
+    </select>
 
     <!-- board List   -->
     <select id="selectList" resultType="boardVO">
@@ -44,24 +57,9 @@
         SELECT * FROM board WHERE seq = #{seq}
     </select>
 
-    <!--
-        board & reply
-        수정필요
-    -->
-    <select id="selectBoardAll" resultMap="boardAll">
-        SELECT
-            B.seq, B.id, B.title, B.content, B.board_insert_time, B.board_update_time,
-            R.idx, R.seq, R.reply
-        FROM board B
-                 LEFT JOIN board_reply R
-                           ON B.seq = R.seq
-        WHERE B.seq = #{seq}
-        ORDER BY R.idx DESC
-    </select>
-
     <!-- board Insert   -->
     <insert id="insert">
-        INSERT INTO board (id, title, content, insert_time) VALUES(
+        INSERT INTO board (id, title, content, board_insert_time) VALUES(
         #{id},
         #{title},
         #{content},
@@ -74,7 +72,7 @@
         UPDATE board SET
         title = #{title},
         content = #{content},
-        update_time = NOW()
+        board_update_time = NOW()
         WHERE seq = #{seq}
     </update>
 
@@ -116,7 +114,4 @@
                 VALUES (#{idx}, #{indent}, #{replyAnswer})
     </insert>
 
-    <select id="selectReplyAnswerList">
-        SELECT * FROM board_reply_answer where root = #{idx}
-    </select>
 </mapper>

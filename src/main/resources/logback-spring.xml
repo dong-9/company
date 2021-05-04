@@ -14,6 +14,7 @@
 
     <!-- 파일로 로그를 남김 -->
     <appender name="ROLLFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
         <file>${LOGS_PATH}/logback.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <charset>UTF-8</charset>

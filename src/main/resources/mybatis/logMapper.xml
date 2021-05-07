@@ -4,52 +4,42 @@
 
     <resultMap id="log" type="log">
         <result column="idx" property="idx"/>
-        <result column="http" property="http" />
-        <result column="http_time" property="httpTime" />
+        <result column="http_request" property="httpRequest" />
+        <result column="request_time" property="requestTime" />
         <result column="package_name" property="packageName" />
         <result column="method_name" property="methodName" />
+        <result column="http_response" property="httpResponse" />
+        <result column="response_time" property="responseTime" />
+        <result column="result_data" property="resultData" />
         <result column="result_time" property="resultTime" />
     </resultMap>
 
-    <!-- time 수정 -->
     <insert id="insertLog" >
-        INSERT INTO log_test (http, http_time, package_name, method_name, result_time)
+        INSERT INTO log (
+                         http_request,
+                         request_time,
+                         package_name,
+                         method_name,
+                         http_response,
+                         response_time,
+                         result_data,
+                         result_time
+                         )
         VALUES(
-               #{http},
-               #{httpTime},
-               #{packageName},
-               #{methodName},
-               <if test="resultTime != null">
-                   #{resultTime}
-               </if>
+                       #{httpRequest},
+                       #{requestTime},
+                       #{packageName},
+                       #{methodName},
+                       #{httpResponse},
+                       #{responseTime},
+                       #{resultData},
+                       #{resultTime}
                )
     </insert>
 
     <delete id="deleteLog">
-        DELETE FROM log_test
-        WHERE STR_TO_DATE(http_time, '%Y-%m-%d')
-            BETWEEN #{startDate}
-            AND #{endDate}
+        DELETE FROM log
+        WHERE STR_TO_DATE(http_time, '%Y-%m-%d')  >= #{date}
     </delete>
 
-
-    <select id="logTest" resultType="String" >
-        SELECT
-            JSON_OBJECT(
-                    'IDX', L.idx,
-                    'HTTP', L.http,
-                    'HTTP_TIME', L.http_time,
-                    'PACKAGE_NAME', L.package_name,
-                    'METHOD_NAME', L.method_name,
-                    'RESULT_TIME', L.result_time
-                )
-                AS test
-        FROM log_test L
-    </select>
-    <insert id="test">
-        INSERT INTO json_test VALUES(#{data})
-    </insert>
-    <select id="t1" resultType="String">
-        SELECT * FROM json_test
-    </select>
 </mapper>

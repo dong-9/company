@@ -1,7 +1,6 @@
 package com.example.board.service;
 
 import com.example.board.mapper.BoardMapper;
-import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.BoardReplyVO;
 import com.example.board.model.BoardVO;
 import com.example.board.model.PageMaker;
@@ -59,8 +58,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int insertReplyAnswer(BoardReplyAnswerVO vo) {
-		return boardMapper.insertReplyAnswer(vo);
+	public int indentUpdate(BoardReplyVO vo) {
+		return boardMapper.indentUpdate(vo);
 	}
 
 	@Override

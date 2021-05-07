@@ -1,6 +1,5 @@
 package com.example.board.controller;
 
-import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
 import com.example.board.model.BoardReplyVO;
@@ -17,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.text.Bidi;
-
 
 @Controller
 @RequestMapping(value = "/board")
 @Slf4j
 public class BoardController {
+	private static final String DETAIL = "redirect:detail?seq=";
+	private static final String LIST = "redirect:list";
 
 	@Autowired
 	private BoardService boardService;
@@ -45,7 +44,7 @@ public class BoardController {
 	public String boardDetail(Model model, BoardVO vo){
 		vo = boardService.selectBoardAll(vo);
 		if(vo == null) {
-			return "redirect:list";
+			return LIST;
 		}
 		model.addAttribute("boardInfo", vo);
 		return "detail";
@@ -63,60 +62,14 @@ public class BoardController {
 			return "insert";
 		}
 		boardService.insert(vo);
-		return "redirect:list";
-	}
-
-	// TODO 댓글 crud
-	// TODO 작성 시간, 수정 시간
-	// TODO 대댓글
-	@PostMapping(value = "/insertReply")
-	public String boardInsertReply(@Valid BoardReplyVO vo, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-		if(bindingResult.hasErrors()){
-			redirectAttributes.addFlashAttribute("msg", "댓글을 입력해주세요");
-			return "redirect:detail?seq="+vo.getSeq();
-		}
-		boardService.insertReply(vo);
-		return "redirect:detail?seq="+vo.getSeq();
-	}
-
-	@GetMapping(value = "/updateReply")
-	public String boardReplyUpdateForm(BoardReplyVO vo, Model model){
-		vo = boardService.selectReplyOne(vo);
-		if(vo == null) return "redirect:list";
-		model.addAttribute("boardReplyVO", vo);
-		return "replyUpdate";
-	}
-	@PostMapping(value = "/updateReply")
-	public String boardReplyUpdate(@Valid BoardReplyVO vo, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			return "replyUpdate";
-		}
-		boardService.updateReply(vo);
-		return "redirect:detail?seq="+vo.getSeq();
-	}
-
-	@GetMapping(value = "/deleteReply")
-	public String boardDeleteReply(BoardReplyVO vo){
-		boardService.deleteReply(vo);
-		return "redirect:/board/detail?seq="+vo.getSeq();
-	}
-
-	@PostMapping(value = "/insertReplyAnswer")
-	public String boardInsertReplyAnswer(BoardVO boardVO,
-										 @Valid BoardReplyAnswerVO boardReplyAnswerVO,
-										 BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			return "redirect:/board/detail?seq="+boardVO.getSeq();
-		}
-		boardService.insertReplyAnswer(boardReplyAnswerVO);
-		return "redirect:/board/detail?seq="+boardVO.getSeq();
+		return LIST;
 	}
 
 	@GetMapping(value = "/update")
 	public String boardUpdateForm(Model model, BoardVO vo){
 		vo = boardService.selectOne(vo);
 		if(vo == null){
-			return "redirect:list";
+			return LIST;
 		}
 		model.addAttribute("boardVO", vo);
 		return "update";
@@ -128,7 +81,7 @@ public class BoardController {
 			return "update";
 		}
 		boardService.update(vo);
-		return "redirect:list";
+		return LIST;
 	}
 
 	@GetMapping(value = "/delete/{seq}")
@@ -136,4 +89,44 @@ public class BoardController {
 		boardService.delete(seq);
 		return "redirect:/board/list";
 	}
+
+	// TODO 댓글 crud
+	// TODO 작성 시간, 수정 시간
+	// TODO 대댓글
+	@PostMapping(value = "/insertReply")
+	public String boardInsertReply(@Valid BoardReplyVO vo, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+		if(bindingResult.hasErrors()){
+			redirectAttributes.addFlashAttribute("msg", "댓글을 입력해주세요");
+			return DETAIL+vo.getSeq();
+		}
+		boardService.indentUpdate(vo);
+		vo.setIndent(vo.getIndent()+1);
+		vo.setStep(vo.getStep()+1);
+		boardService.insertReply(vo);
+		return DETAIL+vo.getSeq();
+	}
+
+	@GetMapping(value = "/updateReply")
+	public String boardReplyUpdateForm(BoardReplyVO vo, Model model){
+		vo = boardService.selectReplyOne(vo);
+		if(vo == null) return LIST;
+		model.addAttribute("boardReplyVO", vo);
+		return "replyUpdate";
+	}
+
+	@PostMapping(value = "/updateReply")
+	public String boardReplyUpdate(@Valid BoardReplyVO vo, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return "replyUpdate";
+		}
+		boardService.updateReply(vo);
+		return DETAIL+vo.getSeq();
+	}
+
+	@RequestMapping(value = "/deleteReply")
+	public String boardDeleteReply(BoardReplyVO vo){
+		boardService.deleteReply(vo);
+		return DETAIL+vo.getSeq();
+	}
+
 }

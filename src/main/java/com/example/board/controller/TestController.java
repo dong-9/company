@@ -1,36 +1,31 @@
 package com.example.board.controller;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.example.board.mapper.BoardMapper;
+import com.example.board.model.BoardReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping(value = "/test")
+@Controller
 public class TestController {
 
-	@GetMapping(value="/a")
-	public String test(){
-		JSONObject obj = new JSONObject();
+	@Autowired
+	private BoardMapper boardMapper;
 
-		JSONObject reqObj = new JSONObject();
-		reqObj.put("time", "2021-05-04");
-		reqObj.put("method", "test1 method");
+	@GetMapping(value = "/list")
+	public String test(Model model){
+		model.addAttribute("list", boardMapper.selectReplyList());
+		return "test";
+	}
 
-		JSONArray requestAr = new JSONArray();
-		requestAr.add(reqObj);
-
-		JSONObject resObj = new JSONObject();
-		resObj.put("time", "2021-05-04");
-		resObj.put("method", "test2 method");
-
-		JSONArray resAr = new JSONArray();
-		resAr.add(resObj);
-
-		obj.put("REQUEST", requestAr);
-		obj.put("RESPONSE", resAr);
-		String json = obj.toString();
-		return json;
+	@RequestMapping(value = "/insert")
+	public String insert(BoardReplyVO vo){
+		boardMapper.indentUpdate(vo);
+		vo.setIndent(vo.getIndent()+1);
+		vo.setStep(vo.getStep()+1);
+		boardMapper.insertReply(vo);
+		return "redirect:list";
 	}
 }

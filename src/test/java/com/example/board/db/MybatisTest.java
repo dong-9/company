@@ -1,7 +1,6 @@
 package com.example.board.db;
 
 import com.example.board.mapper.BoardMapper;
-import com.example.board.model.BoardReplyAnswerVO;
 import com.example.board.model.PageMaker;
 import com.example.board.service.BoardService;
 import com.example.board.model.BoardReplyVO;
@@ -102,13 +101,4 @@ public class MybatisTest {
 		LOGGER.info("reply One {} ", boardMapper.selectReplyOne(replyVO));
 	}
 
-	@Test
-	public void t(){
-		BoardVO a = new BoardVO();
-		vo.setSeq(19);
-		a = boardMapper.selectBoardAll(vo);
-		List<BoardReplyVO> boardReplyVOList = a.getBoardReplyVO();
-		boardReplyVOList.forEach(System.out::println);
-		boardReplyVOList.get(0).getBoardReplyAnswerVOList().forEach(System.out::println);
-	}
 }

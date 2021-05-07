@@ -8,7 +8,6 @@
     <title>Board Page</title>
     <style>
         h2 {text-align: center}
-        div {text-align: center}
     </style>
 </head>
 <body>
@@ -45,38 +44,39 @@
     <div>
         <button><a href="/board/update?seq=${boardInfo.seq}">UPDATE</a></button>
     </div>
-    <div id="reply-box">
-        <h3>REPLY</h3>
-        <c:if test="${boardInfo.boardReplyVO.get(0).idx != 0}">
-        <table border="1" align="center" width="200px">
-            <c:forEach var="list" items="${boardInfo.boardReplyVO}" varStatus="vs">
-            <tr>
-                <td>
-                    <h5>${list.reply}</h5>
-                    <button><a href="updateReply?idx=${list.idx}&seq=${list.seq}">수정</a></button>
-                    <button><a href="deleteReply?idx=${list.idx}&seq=${list.seq}">삭제</a></button><br>
-                    <c:forEach var="answerList" items="${list.boardReplyAnswerVOList}">
-                        <span>${answerList.replyAnswer}</span><br>
-                    </c:forEach>
-                    <form action="insertReplyAnswer" method="post">
-                        <input type="hidden" name="idx" value="${list.idx}">
-                        <input type="hidden" name="seq" value="${list.seq}">
-                        <textarea name="replyAnswer"></textarea>
-                        <input type="submit" value="댓글 등록">
-                    </form>
-                </td>
-            </tr>
-            </c:forEach>
-        </table>
+    <h3>REPLY</h3>
+    <form:form action="/board/insertReply" method="post" modelAttribute="boardReplyVO">
+        <input type="hidden" name="seq" value="${boardInfo.seq}">
+        <textarea name="reply"></textarea>
+        <c:if test="${msg != null}">
+            <span>${msg}</span>
         </c:if>
-        <form:form action="/board/insertReply" method="post" modelAttribute="boardReplyVO">
-            <input type="hidden" name="seq" value="${boardInfo.seq}">
-            <textarea name="reply"></textarea>
-            <c:if test="${msg != null}">
-                <span>${msg}</span>
-            </c:if>
-            <input type="submit" value="reply">
-        </form:form>
-    </div>
+        <input type="submit" value="reply">
+    </form:form>
+
+    <c:if test="${boardInfo.boardReplyVO.get(0).idx != 0}">
+        <c:forEach var="list" items="${boardInfo.boardReplyVO}" >
+        <div style="border: 1px solid black; padding-left: ${list.step*30}px;">
+            <h5>${list.reply}</h5>
+            <button><a href="updateReply?idx=${list.idx}&seq=${list.seq}">수정</a></button>
+            <form action="deleteReply" method="post">
+                <input type="hidden" name="idx" value="${list.idx}">
+                <input type="hidden" name="seq" value="${list.seq}">
+                <input type="hidden" name="indent" value="${list.indent}">
+                <input type="hidden" name="root" value="${list.root}">
+                <input type="submit" value="삭제">
+            </form>
+            <form action="/board/insertReply" method="post">
+                <input type="hidden" name="seq" value="${list.seq}">
+                <input type="hidden" name="root" value="${list.root}">
+                <input type="hidden" name="indent" value="${list.indent}">
+                <input type="hidden" name="step" value="${list.step}">
+                <textarea name="reply"></textarea>
+                <input type="submit" value="답글달기">
+            </form>
+        </div>
+            <br><br>
+        </c:forEach>
+    </c:if>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int deleteLog(String startDate, String endDate) {
-		return logMapper.deleteLog(startDate, endDate);
+	public int deleteLog(String date) {
+		return logMapper.deleteLog(date);
 	}
 }

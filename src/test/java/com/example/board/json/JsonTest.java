@@ -19,9 +19,6 @@ public class JsonTest {
 
 	@Test
 	public void json() throws JsonProcessingException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		for(String li : logMapper.t1()){
-		}
 
 	}
 
@@ -36,9 +33,5 @@ public class JsonTest {
 	public void e(){
 		LocalDateTime now = LocalDateTime.now();
 		LocalDateTime ago = now.minusDays(7);
-		logMapper.deleteLog(
-				now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-				ago.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-		);
 	}
 }
